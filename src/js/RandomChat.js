@@ -2,14 +2,14 @@ function ChatLog(log) {
     "use strict";
 
     log = log || (function () {
-        
+
         var d = document.createElement("div");
-        d.className = "chat-log-wraper ";     
+        d.className = "chat-log-wraper ";
 
         var g = document.createElement("div");
         g.className = "chat-log container";
         d.appendChild(g);
-        
+
         return d;
     })();
 
@@ -44,6 +44,17 @@ function ChatLog(log) {
         scroll();
     };
 }
+function PlaySound(sound) {
+    switch (sound) {
+        case 'newpair':
+            var audio = new Audio('sound/newpair.mp3');
+            break;
+        case 'newmsg':
+            var audio = new Audio('sound/newmsg.mp3');
+            break;
+    }
+    audio.play();
+}
 
 function ChatInput(input) {
     "use strict";
@@ -69,7 +80,7 @@ function ChatInput(input) {
 
     this.editable = function (bool) {
         input.getElementsByClassName("chat-input")[0].setAttribute("contenteditable", bool);
-        input.getElementsByClassName("chat-input")[0].className = (bool)?'chat-input container enabled':"chat-input container disabled";
+        input.getElementsByClassName("chat-input")[0].className = (bool) ? 'chat-input container enabled' : "chat-input container disabled";
     };
 
     this.enter = function (func) {
@@ -129,6 +140,7 @@ function RandomChat(url, win) {
                 log.systemMessage("Знайшов!");
                 input.editable(true);
                 input.focus();
+                PlaySound('newpair');
                 break;
             case "message":
                 log.partnerMessage(msg.text);
