@@ -62,7 +62,7 @@
 
         <script>
             (function () {
-                var url = "ws://" + window.location.host;
+                var url = "wss://" + window.location.host;
                 if (url.match(/:\d+$/)) {
                     url = url.substr(0, url.lastIndexOf(":"));
                 }
