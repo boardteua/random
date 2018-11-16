@@ -54,7 +54,7 @@ function ChatInput(input) {
 
         var g = document.createElement("div");
         g.className = "chat-input container";
-        d.appendChild(g);
+        d.innerHtml(g);
         return d;
 
     })();
