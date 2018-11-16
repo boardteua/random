@@ -77,7 +77,7 @@
 
                 function resize() {
                     console.log(window.innerHeight);
-                    var h = window.innerHeight - document.getElementsByClassName("input-wraper")[0].style.height - document.getElementsByClassName("navbar")[0].style.height;
+                    var h = window.innerHeight - document.getElementsByClassName("input-wraper")[0].style.height - document.getElementsByClassName("navbar")[0].style.height * 2;
                     console.log(h);
                     document.getElementsByClassName("chat-log-wraper")[0].style.height = h + "px";
 
