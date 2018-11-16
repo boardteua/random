@@ -76,9 +76,8 @@
                 });
 
                 function resize() {
-                    console.log(window.innerHeight);
-                    var h = window.innerHeight - document.getElementsByClassName("input-wraper")[0].offsetHeight*2 - document.getElementsByClassName("navbar")[0].offsetHeight;
-                    console.log(document.getElementsByClassName("input-wraper")[0].offsetHeight);
+                    var h = window.innerHeight - document.getElementsByClassName("input-wraper")[0].clientHeight - document.getElementsByClassName("navbar")[0].offsetHeight;
+                   
                     document.getElementsByClassName("chat-log-wraper")[0].style.height = h + "px";
 
                 }
