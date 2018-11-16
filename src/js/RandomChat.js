@@ -4,11 +4,10 @@ function ChatLog(log) {
     log = log || (function () {
         
         var d = document.createElement("div");
-        d.className = "chat-log-wraper";
-        d.className = "container";
+        d.className = "chat-log-wraper ";     
 
         var g = document.createElement("div");
-        g.className = "chat-log";
+        g.className = "chat-log container";
         d.appendChild(g);
         
         return d;
@@ -18,7 +17,8 @@ function ChatLog(log) {
         var d = document.createElement("div");
         d.className = type;
         d.textContent = msg;
-        log.appendChild(d);
+        document.getElementsByClassName('chat-log')[0].appendChild(d);
+
     };
 
     var scroll = function () {
@@ -51,10 +51,9 @@ function ChatInput(input) {
     input = input || (function () {
         var d = document.createElement("div");
         d.className = "input-wraper";
-        d.className = "container";
 
         var g = document.createElement("div");
-        g.className = "chat-input";
+        g.className = "chat-input container";
         d.appendChild(g);
         return d;
 
@@ -70,6 +69,7 @@ function ChatInput(input) {
 
     this.editable = function (bool) {
         input.setAttribute("contenteditable", bool);
+        input.className = (bool)?'enabled':"disabled";
     };
 
     this.enter = function (func) {
