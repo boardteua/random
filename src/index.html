@@ -76,6 +76,7 @@
                 });
 
                 function resize() {
+                    console.log(document.body.clientHeight);
                     var h = document.body.clientHeight - document.getElementsByClassName("input-wraper")[0].style.height - document.getElementsByClassName("navbar")[0].style.height;
                     console.log(h);
                     document.getElementsByClassName("chat-log-wraper")[0].style.height = h + "px";
