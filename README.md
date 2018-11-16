@@ -1,4 +1,7 @@
 random chat ratchet test
 
-''php -S localhost:8090 -t ./www & ./chatserver 8091''
-
+    composer.phar install
+    vendor/bin/phing build
+    cd dist
+    php -S localhost:8080 -t ./www &
+    ./chatserver 8081
