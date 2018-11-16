@@ -69,7 +69,7 @@ function ChatInput(input) {
 
     this.editable = function (bool) {
         input.setAttribute("contenteditable", bool);
-        input.className = (bool)?'input-wraper enabled':"input-wraper disabled";
+        input.className = (bool)?'container chat-input enabled':"container chat-input disabled";
     };
 
     this.enter = function (func) {
