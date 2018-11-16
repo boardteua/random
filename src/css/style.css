@@ -4,13 +4,12 @@ body {
   margin: 0;
   padding: 0;
 }
-
+.bg-light {
+    background-color: #fefff6!important;
+}
 .chat-window {
   display: flex;
   flex-direction: column;
-  position: absolute;
-  height: 100%;
-  width: 100%;
 }
 
 .chat-log {
@@ -28,7 +27,9 @@ body {
   min-height: 70px;
   outline: 1px solid #666;
   overflow: auto;
-  padding: 4px;
+  padding: 4px;  
+  bottom:10px;
+  margin-top:auto;
 }
 
 .msg-user {

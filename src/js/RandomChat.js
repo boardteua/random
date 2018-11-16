@@ -105,7 +105,7 @@ function RandomChat(url, win) {
 
     socket.onopen = function () {
         log.systemMessage(
-            "Please wait while we search for a chat partner..."
+            "Зачекайте, панда шукає вам партнера"
         );
     };
 
@@ -113,7 +113,7 @@ function RandomChat(url, win) {
         var msg = JSON.parse(e.data);
         switch (msg.event) {
         case "connected":
-            log.systemMessage("Partner found! You may now chat.");
+            log.systemMessage("Знайшов!");
             input.editable(true);
             input.focus();
             break;
@@ -122,8 +122,8 @@ function RandomChat(url, win) {
             break;
         case "disconnected":
             log.systemMessage(
-                "Your chat partner disconnected. " +
-                "Please wait while we search for a new partner..."
+                "Ваш партнер кудись пішов. " +
+                "Давайте я вам ще когось пошукаю..."
             );
             input.editable(false);
             break;
@@ -132,10 +132,10 @@ function RandomChat(url, win) {
 
     socket.onclose = function (e) {
         if (e.code === 1000) {
-            log.systemMessage("Connection closed. Goodbye!");
+            log.systemMessage("Папа!");
         } else {
             log.systemMessage(
-                "Connection unavailable. (Error " + e.code + ")"
+                "Ой, щось поламалося. (Error " + e.code + ")"
             );
         }
         input.editable(false);
