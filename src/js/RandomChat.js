@@ -53,6 +53,7 @@ function PlaySound(sound) {
             var audio = new Audio('sound/newmsg.mp3');
             break;
     }
+    audio.pause();
     audio.play();
 }
 
