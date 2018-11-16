@@ -64,7 +64,7 @@ function ChatInput(input) {
     };
 
     this.clear = function () {
-        input.textContent = "";
+        input.getElementsByClassName("chat-input")[0].textContent = "";
     };
 
     this.editable = function (bool) {
