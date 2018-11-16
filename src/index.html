@@ -69,6 +69,18 @@
                 var chat = new RandomChat(url + ":8091");
                 document.getElementById("chat").appendChild(chat.window());
 
+                resize();
+                window.addEventListener('resize', function (event) {
+                    resize();
+                    console.log(event);
+                });
+
+                function resize() {
+                    var h = document.body.clientHeight - document.getElementsByClassName("input-wraper")[0].style.height - document.getElementsByClassName("navbar")[0].style.height;
+                    console.log(h);
+                    document.getElementsByClassName("chat-log-wraper")[0].style.height = h + "px";
+
+                }
             })();
         </script>
     </body>
