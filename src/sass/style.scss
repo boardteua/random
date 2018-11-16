@@ -6,6 +6,10 @@ body {
 }
 .bg-light {
     background-color: #fefff6!important;
+    h1{
+        font-size: 1.25rem;
+        display: inline;
+    }
 }
 .chat-window {
     display: flex;
