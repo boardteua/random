@@ -54,7 +54,10 @@ function PlaySound(sound) {
             break;
     }
     audio.pause();
-    audio.play();
+    setTimeout(function () {
+        audio.play();
+    }, 0);
+    
 }
 
 function ChatInput(input) {
