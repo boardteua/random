@@ -33,7 +33,7 @@ body {
     border-top: 1px solid #e4e4d8;
 
     .enabled{
-        display: block;  
+        display: block!important;  
         -webkit-animation: scale-up-ver-bottom 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
         animation: scale-up-ver-bottom 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
     }
