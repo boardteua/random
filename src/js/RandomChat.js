@@ -2,8 +2,15 @@ function ChatLog(log) {
     "use strict";
 
     log = log || (function () {
+        
         var d = document.createElement("div");
-        d.className = "chat-log";
+        d.className = "chat-log-wraper";
+        d.className = "container";
+
+        var g = document.createElement("div");
+        g.className = "chat-log";
+        d.appendChild(g);
+        
         return d;
     })();
 
@@ -43,8 +50,14 @@ function ChatInput(input) {
 
     input = input || (function () {
         var d = document.createElement("div");
-        d.className = "chat-input";
+        d.className = "input-wraper";
+        d.className = "container";
+
+        var g = document.createElement("div");
+        g.className = "chat-input";
+        d.appendChild(g);
         return d;
+
     })();
 
     this.input = function () {
@@ -105,28 +118,28 @@ function RandomChat(url, win) {
 
     socket.onopen = function () {
         log.systemMessage(
-            "Зачекайте, панда шукає вам партнера"
-        );
+                "Зачекайте, панда шукає вам партнера"
+                );
     };
 
     socket.onmessage = function (e) {
         var msg = JSON.parse(e.data);
         switch (msg.event) {
-        case "connected":
-            log.systemMessage("Знайшов!");
-            input.editable(true);
-            input.focus();
-            break;
-        case "message":
-            log.partnerMessage(msg.text);
-            break;
-        case "disconnected":
-            log.systemMessage(
-                "Ваш партнер кудись пішов. " +
-                "Давайте я вам ще когось пошукаю..."
-            );
-            input.editable(false);
-            break;
+            case "connected":
+                log.systemMessage("Знайшов!");
+                input.editable(true);
+                input.focus();
+                break;
+            case "message":
+                log.partnerMessage(msg.text);
+                break;
+            case "disconnected":
+                log.systemMessage(
+                        "Ваш партнер кудись пішов. " +
+                        "Давайте я вам ще когось пошукаю..."
+                        );
+                input.editable(false);
+                break;
         }
     };
 
@@ -135,8 +148,8 @@ function RandomChat(url, win) {
             log.systemMessage("Папа!");
         } else {
             log.systemMessage(
-                "Ой, щось поламалося. (Error " + e.code + ")"
-            );
+                    "Ой, щось поламалося. (Error " + e.code + ")"
+                    );
         }
         input.editable(false);
     };
