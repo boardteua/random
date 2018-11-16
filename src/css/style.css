@@ -18,12 +18,17 @@ body {
   height: 100%;
   width: 100%; }
 
-.chat-log {
-  flex-grow: 1;
+.chat-log-wraper {
+  width: 100%;
+  height: 100%;
   overflow: auto;
-  padding: 10px; }
-  .chat-log div {
-    margin-bottom: 8px; }
+  overflow-x: hidden; }
+  .chat-log-wraper .chat-log {
+    flex-grow: 1;
+    overflow: auto;
+    padding: 10px; }
+    .chat-log-wraper .chat-log div {
+      margin-bottom: 8px; }
 
 .input-wraper {
   background: #ebecdb;
