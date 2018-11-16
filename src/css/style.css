@@ -33,7 +33,8 @@ body {
   left: 0;
   width: 100%;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
-  border-top: 1px solid #e4e4d8; }
+  border-top: 1px solid #e4e4d8;
+  height: 87px; }
   .input-wraper .enabled {
     display: block !important;
     -webkit-animation: scale-up-ver-bottom 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;

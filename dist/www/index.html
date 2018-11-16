@@ -76,14 +76,12 @@
                 });
 
                 function resize() {
-                    var h = document.body.clientHeight - document.getElementsByClassName("input-wraper")[0].height - document.getElementsByClassName("navbar")[0].height;
-                    console.log(h);
+                    var h = window.innerHeight - document.getElementsByClassName("input-wraper")[0].offsetHeight - document.getElementsByClassName("navbar")[0].offsetHeight;
+                   console.log(document.getElementsByClassName("input-wraper")[0].offsetHeight);
                     document.getElementsByClassName("chat-log-wraper")[0].style.height = h + "px";
 
                 }
             })();
-
-
         </script>
     </body>
 </html>

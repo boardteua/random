@@ -2,8 +2,14 @@ function ChatLog(log) {
     "use strict";
 
     log = log || (function () {
+
         var d = document.createElement("div");
-        d.className = "chat-log";
+        d.className = "chat-log-wraper ";
+
+        var g = document.createElement("div");
+        g.className = "chat-log container";
+        d.appendChild(g);
+
         return d;
     })();
 
@@ -11,7 +17,8 @@ function ChatLog(log) {
         var d = document.createElement("div");
         d.className = type;
         d.textContent = msg;
-        log.appendChild(d);
+        document.getElementsByClassName('chat-log')[0].appendChild(d);
+
     };
 
     var scroll = function () {
@@ -37,14 +44,34 @@ function ChatLog(log) {
         scroll();
     };
 }
+function PlaySound(sound) {
+    switch (sound) {
+        case 'newpair':
+            var audio = new Audio('sound/newpair.mp3');
+            break;
+        case 'newmsg':
+            var audio = new Audio('sound/newmsg.mp3');
+            break;
+    }
+    audio.pause();
+    setTimeout(function () {
+        audio.play();
+    }, 0);
+    
+}
 
 function ChatInput(input) {
     "use strict";
 
     input = input || (function () {
         var d = document.createElement("div");
-        d.className = "chat-input";
+        d.className = "input-wraper";
+
+        var g = document.createElement("div");
+        g.className = "chat-input container";
+        d.appendChild(g);
         return d;
+
     })();
 
     this.input = function () {
@@ -52,11 +79,12 @@ function ChatInput(input) {
     };
 
     this.clear = function () {
-        input.textContent = "";
+        input.getElementsByClassName("chat-input")[0].textContent = "";
     };
 
     this.editable = function (bool) {
-        input.setAttribute("contenteditable", bool);
+        input.getElementsByClassName("chat-input")[0].setAttribute("contenteditable", bool);
+        input.getElementsByClassName("chat-input")[0].className = (bool) ? 'chat-input container enabled' : "chat-input container disabled";
     };
 
     this.enter = function (func) {
@@ -105,28 +133,29 @@ function RandomChat(url, win) {
 
     socket.onopen = function () {
         log.systemMessage(
-            "Зачекайте, панда шукає вам партнера"
-        );
+                "Зачекайте, панда шукає вам партнера"
+                );
     };
 
     socket.onmessage = function (e) {
         var msg = JSON.parse(e.data);
         switch (msg.event) {
-        case "connected":
-            log.systemMessage("Знайшов!");
-            input.editable(true);
-            input.focus();
-            break;
-        case "message":
-            log.partnerMessage(msg.text);
-            break;
-        case "disconnected":
-            log.systemMessage(
-                "Ваш партнер кудись пішов. " +
-                "Давайте я вам ще когось пошукаю..."
-            );
-            input.editable(false);
-            break;
+            case "connected":
+                log.systemMessage("Знайшов!");
+                input.editable(true);
+                input.focus();
+                PlaySound('newpair');
+                break;
+            case "message":
+                log.partnerMessage(msg.text);
+                break;
+            case "disconnected":
+                log.systemMessage(
+                        "Ваш партнер кудись пішов. " +
+                        "Давайте я вам ще когось пошукаю..."
+                        );
+                input.editable(false);
+                break;
         }
     };
 
@@ -135,8 +164,8 @@ function RandomChat(url, win) {
             log.systemMessage("Папа!");
         } else {
             log.systemMessage(
-                "Ой, щось поламалося. (Error " + e.code + ")"
-            );
+                    "Ой, щось поламалося. (Error " + e.code + ")"
+                    );
         }
         input.editable(false);
     };
