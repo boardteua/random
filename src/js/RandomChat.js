@@ -173,8 +173,9 @@ function RandomChat(url, win) {
 }
 
 function ParseMsg(msg){
+	var urls = '';
 	
-	var urls=msg.match(/(?:^|[^"'])(\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|])/gim);
+	urls=msg.match(/(?:^|[^"'])(\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|])/gim);
 
 	// Make an array of urls
 	urls.forEach(function(v,i,a){
