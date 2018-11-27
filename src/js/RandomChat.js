@@ -50,7 +50,7 @@ function PlaySound(sound) {
             var audio = new Audio('sound/newpair.mp3');
             break;
         case 'newmsg':
-            var audio = new Audio('sound/newmsg.mp3');
+            var audio = new Audio('sound/stairs.mp3');
             break;
     }
     audio.pause();
@@ -148,6 +148,7 @@ function RandomChat(url, win) {
                 break;
             case "message":
                 log.partnerMessage(msg.text);
+				PlaySound('newmsg');
                 break;
             case "disconnected":
                 log.systemMessage(
