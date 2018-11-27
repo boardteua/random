@@ -16,7 +16,8 @@ function ChatLog(log) {
     var write = function (msg, type) {
         var d = document.createElement("div");
         d.className = type;
-        d.textContent = ParseMsg(msg);
+        //d.textContent = ParseMsg(msg);
+        d.innerHTML = ParseMsg(msg);
         document.getElementsByClassName('chat-log')[0].appendChild(d);
 
     };
