@@ -178,22 +178,23 @@ function ParseMsg(msg){
 	urls=msg.match(/(?:^|[^"'])(\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|])/gim);
 
 	// Make an array of urls
-	urls.forEach(function(v,i,a){
-		var n =   msg.indexOf(v,count); //get location of string
-		
-		if(v.match(/\.(png|jpg|jpeg|gif)$/)===null){// Check if image 
-			// If link replace yourString with new  anchor tag
-			msg  = strSplice(msg,n,v.length,'<a href="'+v+'" target="_blank">'+v+'</a>');
-			count += (v.length*2)+16;// Increase count incase there are multiple of the same url.
-		}else{
-			// If link replace yourString with img tag
-		  msg  = strSplice(msg,n,v.length,'<a href="'+v+'" class="thinkbox"><img src="'+v+'"  class="p-3 img-thumbnail img-fluid"/></a>');
-		   count += v.length+14;// Increase count incase there are multiple of the same url.
-		}
-		
-		
-	});
-	
+	if(urls !== null){
+		urls.forEach(function(v,i,a){
+			var n =   msg.indexOf(v,count); //get location of string
+			
+			if(v.match(/\.(png|jpg|jpeg|gif)$/)===null){// Check if image 
+				// If link replace yourString with new  anchor tag
+				msg  = strSplice(msg,n,v.length,'<a href="'+v+'" target="_blank">'+v+'</a>');
+				count += (v.length*2)+16;// Increase count incase there are multiple of the same url.
+			}else{
+				// If link replace yourString with img tag
+			  msg  = strSplice(msg,n,v.length,'<a href="'+v+'" class="thinkbox"><img src="'+v+'"  class="p-3 img-thumbnail img-fluid"/></a>');
+			   count += v.length+14;// Increase count incase there are multiple of the same url.
+			}
+			
+			
+		});
+	}
 	return msg
 }
 
