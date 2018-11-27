@@ -16,7 +16,7 @@ function ChatLog(log) {
     var write = function (msg, type) {
         var d = document.createElement("div");
         d.className = type;
-        d.textContent = msg;
+        d.textContent = ParseMsg(msg);
         document.getElementsByClassName('chat-log')[0].appendChild(d);
 
     };
@@ -171,3 +171,33 @@ function RandomChat(url, win) {
         input.editable(false);
     };
 }
+
+function ParseMsg(msg){
+	
+	var urls=msg.match(/(?:^|[^"'])(\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|])/gim);
+
+	// Make an array of urls
+	urls.forEach(function(v,i,a){
+		var n =   msg.indexOf(v,count); //get location of string
+		
+		if(v.match(/\.(png|jpg|jpeg|gif)$/)===null){// Check if image 
+			// If link replace yourString with new  anchor tag
+			msg  = strSplice(msg,n,v.length,'<a href="'+v+'" target="_blank">'+v+'</a>');
+			count += (v.length*2)+16;// Increase count incase there are multiple of the same url.
+		}else{
+			// If link replace yourString with img tag
+		  msg  = strSplice(msg,n,v.length,'<a href="'+v+'" class="thinkbox"><img src="'+v+'"  class="p-3 img-thumbnail img-fluid"/></a>');
+		   count += v.length+14;// Increase count incase there are multiple of the same url.
+		}
+		
+		
+	});
+	
+	return msg
+}
+
+// A function to splice strings that I found on another StackOverflow Question.
+function strSplice(str, index, count, add) {
+  return str.slice(0, index) + (add || "") + str.slice(index + count);
+}
+
