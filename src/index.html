@@ -89,26 +89,7 @@
 
                 }
 
-                var token = '';
-                var pinger = setInterval(function () {
-                    $(document).ready(function () {
-                        $.ajax({
-                            cache: false,
-                            data: {
-                                token: token
-                            },
-                            timeout: 2500,
-                            type: 'GET',
-                            url: 'www/pinger.php',
-                            dataType: 'json',
-                            success: function (data, status, jqXHR) {
-                                $('#userCount').text(data.userCount);
-                                token = data.token;
-                            }
-                        });
-
-                    }, 5000);
-                });
+                    
 
             })();
         </script>
