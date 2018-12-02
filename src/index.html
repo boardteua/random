@@ -53,7 +53,7 @@
                         <li class="nav-item">
                             <a class="nav-link" id="userCount" href="#"></a>
                         </li>
-                        
+
                     </ul>
                 </div>
             </div>
@@ -88,23 +88,24 @@
 
                 var token = '';
                 var pinger = setInterval(function () {
-                        
-                    jQuery.ajax({
-                        cache: false,
-                        data: {
-                            token: token,
-                        },
-                        timeout: 2500,
-                        type: 'GET',
-                        url: 'pinger.php',
-                        dataType: 'json',
-                        success: function (data, status, jqXHR) {
-                            jQuery('#userCount').text(data.userCount);
-                            token = data.token;
-                        }
-                    });
+                    $(document).ready(function () {
+                        $.ajax({
+                            cache: false,
+                            data: {
+                                token: token
+                            },
+                            timeout: 2500,
+                            type: 'GET',
+                            url: 'pinger.php',
+                            dataType: 'json',
+                            success: function (data, status, jqXHR) {
+                                $('#userCount').text(data.userCount);
+                                token = data.token;
+                            }
+                        });
 
-                }, 5000);
+                    }, 5000);
+                });
 
             })();
         </script>
