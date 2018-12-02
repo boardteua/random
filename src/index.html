@@ -50,6 +50,10 @@
                         <li class="nav-item">
                             <a class="nav-link" target="_blank" href="https://weekdays.te.ua">Форум</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="userCount" href="#"></a>
+                        </li>
+                        
                     </ul>
                 </div>
             </div>
@@ -77,10 +81,31 @@
 
                 function resize() {
                     var h = window.innerHeight - document.getElementsByClassName("input-wraper")[0].offsetHeight - document.getElementsByClassName("navbar")[0].offsetHeight;
-                   console.log(document.getElementsByClassName("input-wraper")[0].offsetHeight);
+                    console.log(document.getElementsByClassName("input-wraper")[0].offsetHeight);
                     document.getElementsByClassName("chat-log-wraper")[0].style.height = h + "px";
 
                 }
+
+                var token = '';
+                var pinger = setInterval(function () {
+
+                    $.ajax({
+                        cache: false,
+                        data: {
+                            token: token,
+                        },
+                        timeout: 2500,
+                        type: 'GET',
+                        url: 'pinger.php',
+                        dataType: 'json',
+                        success: function (data, status, jqXHR) {
+                            $('#userCount').text(data.userCount);
+                            token = data.token;
+                        }
+                    });
+
+                }, 5000);
+
             })();
         </script>
     </body>
